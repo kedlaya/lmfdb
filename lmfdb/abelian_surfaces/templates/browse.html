@@ -1,0 +1,136 @@
+{% extends 'homepage.html' %}
+
+{% block content %}
+
+{#
+<div>
+An {{KNOWL("ec", title="elliptic curve")}} is a {{KNOWL("ag.curve.smooth",title="smooth")}} projective {{KNOWL("ag.curve",title="curve")}} of {{KNOWL("ag.curve.genus",title="genus")}} 1 with a rational basepoint $O$. 
+</div>
+#}
+
+<div>
+This is a database of {{ KNOWL("ag.abelian_surface", title="principally polarized abelian surfaces")}}
+over $\Q$. No guarantees of completeness are made at this time.
+</div>
+
+<h2> Browse {{ KNOWL('ag.abelian_surface',title='abelian surfaces')}} over $\Q$</h2>
+
+<p>
+By conductor:
+{% for rnge in info.conductor_list %}
+<a href="?conductor={{rnge}}">{{rnge}}</a>
+{% endfor %}
+</p>
+<p>
+By rank:
+{% for r in info.rank_list: %}
+<a href="?rank={{r}}">{{r}}</a>
+{% endfor %}
+</p>
+<p>
+By torsion order:
+{% for t in info.torsion_list: %}
+<a href="?torsion={{t}}">{{t}}</a>
+{% endfor %}
+</p>
+
+
+<h2> Find a specific surface or isogeny class by label </h2>
+<form>
+<input type='text' name='label' size=25 example="11.a2">
+<button type='submit' name='jump' value='label or isogeny class' >label or isogeny class</button>
+<br><span class="formexample">e.g. 121.a1 or 169.a
+</span>
+{% if err_msg %}
+<br><span class="errmsg">{{err_msg}}</span>
+{% endif %}
+</form>
+
+<h2> Search </h2>
+Please enter a value or leave blank:
+<p></p>
+<form>
+  <table>
+    <tr>
+      <td>conductor</td>
+     <td>
+       <input type='text' name='conductor' example="389" size=10 value="{{conductor}}" />
+     </td>
+     <td><span class="formexample"> e.g. 389 or 100-200</span></td>
+
+    </tr>
+
+
+   <tr>
+   <td>
+    {{ KNOWL('ec.q.rank',title="rank") }}
+    </td>
+           <td>
+           <input type='text' name='rank' example="0" size=10 value="{{rank}}" />
+           </td>
+           <td><span class="formexample"> e.g. 0 </span>
+           </td>
+    </tr>
+
+    <tr>
+          <td>
+          {{ KNOWL('ec.q.torsion_order',title="torsion order") }}
+          </td>
+          <td>
+          <input type='text' name='torsion' example="2" size=10 value="{{torsion}}" />
+          </td>
+          <td>
+          <span class="formexample"> e.g. 2 </span>
+          </td>
+
+          <td>
+          {{ KNOWL('ec.q.torsion_subgroup',title="torsion structure") }}
+          </td>
+          <td>
+          <input type='text' name='torsion_structure' example="[2,4]" size=10 value="{{torsion_structure}}" />
+          </td>
+          <td>
+          <span class="formexample"> e.g. [2,4] </span>
+          </td>
+      </tr>
+
+    <tr>
+          <td>
+          {{ KNOWL('ec.q.analytic_sha_order',title="analytic order of &#1064;") }}
+          </td>
+          <td>
+          <input type='text' name='sha_an' example="4" size=10 />
+          </td>
+          <td>
+          <span class="formexample"> e.g. 4 </span>
+          </td>
+      </tr>
+
+<tr>
+<td align=left>{{KNOWL('ec.q.surjective_prime', title='surjective primes')}} 
+   <td><input type='text' name='surj_primes' size=10 example='2,3'></td>
+<td><span class="formexample"> e.g. 2,3</span></td>
+<td align=left>
+{{KNOWL('ec.q.non-surjective_prime', title='non-surjective primes')}} 
+  <select name='surj_quantifier'>
+  <option value='include'>include</option>
+  <option value='exactly'>exactly</option>
+  </select>
+</td>
+<td><input type='text' name='nonsurj_primes' size=10 example='2,3'></td>
+<td><span class="formexample"> e.g. 2,3</span></td>
+</tr>
+
+
+<tr>
+<td align=left colspan=4>Maximum number of surfaces to display <input type='text' name='count' value={{count}} size=10 />
+</td>
+</tr>
+
+
+  </table>
+<p></p>
+<td><button type='submit' value='Search'>Search</button></td>
+
+</form>
+{% endblock %}

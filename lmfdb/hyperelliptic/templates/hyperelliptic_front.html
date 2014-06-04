@@ -1,0 +1,15 @@
+{% extends 'homepage.html' %}
+{% block content %}
+
+</br>
+<p> Here is a knowl:</p>
+<h2>{{ KNOWL('bio.selberg', title='A knowl with 5 authors') }} </h2>
+
+</br>
+<p> Here is some static content </p>
+
+</br>
+<p> Here is 1+1, computed by python: {{ something_generated }} </p>
+
+
+{% endblock %}

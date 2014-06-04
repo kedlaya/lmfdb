@@ -209,8 +209,8 @@
   <ul class="list">
    <li>Elliptic Curves over:</li> <li><a href="{{ url_for('EC_toplevel') }}">\(\Q\)</a> <a href="">\(\Q(\sqrt{d})\)</a> <a href="">\(\Q(\sqrt{-d})\)</a> <a href="">other</a>
     <li class="test"><a href="">$\Q$-curves</a></li>
-    <li class="test"><a href="">Hyperelliptic curves</a></li>
-    <li class="test">Surfaces: <a href="">Abelian</a>  <a href="">K3</a></li>
+    <li class="test"><a href="{{ url_for('hyperelliptic.hyperelliptic_front_page') }}">Hyperelliptic curves</a></li>
+    <li class="test">Surfaces: <a href="{{ url_for('abelian_surfaces.abelian_surfaces_front_page') }}">Abelian</a>  <a href="">K3</a></li>
     <li class="test">Higher:  Calabi-Yau</li>
   </ul>
 {% endif %}
